@@ -1,0 +1,22 @@
+server:
+  port: 8030
+
+spring:
+  application:
+    name: mall-user-service  #微服务名称
+
+  #配置nacos注册中心地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        #group:  mall-order
+        cluster-name: SH
+        #ephemeral: false
+
+#暴露actuator端点   http://localhost:8030/actuator/sentinel
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
