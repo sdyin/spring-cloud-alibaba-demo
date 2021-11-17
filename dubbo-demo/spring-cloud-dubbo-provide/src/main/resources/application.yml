@@ -1,0 +1,23 @@
+
+dubbo:
+  scan:
+    # 指定dubbo 服务实现类扫描的基准包
+    base-packages: com.sdyin.dubbo
+  protocol:
+    name: dubbo
+    # dubbo协议端口 (-1 表示自增端口,从20880 开始)
+    port: -1
+
+spring:
+  application:
+    name: spring-cloud-dubbo-provide
+  main:
+    # springboot2.1 及更高版本需要设定
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+server:
+  port: 8040
