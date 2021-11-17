@@ -1,13 +1,13 @@
-package com.sdyin;
+package com.sdyin.dubbo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MallCommonApplication {
+public class DubboDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MallCommonApplication.class, args);
+        SpringApplication.run(DubboDemoApplication.class, args);
     }
 
 }

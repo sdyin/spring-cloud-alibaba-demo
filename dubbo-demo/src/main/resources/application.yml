@@ -1,0 +1,17 @@
+server:
+  port: 8040
+
+
+spring:
+  application:
+    name: dubbo-demo  #?????
+
+  #??nacos??????
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        #group:  mall-order
+        cluster-name: SH
+        #ephemeral: false
+
