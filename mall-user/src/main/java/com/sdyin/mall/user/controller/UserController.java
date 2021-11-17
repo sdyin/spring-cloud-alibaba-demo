@@ -1,6 +1,7 @@
 package com.sdyin.mall.user.controller;
 
 import com.sdyin.mall.common.response.Result;
+import com.sdyin.mall.user.service.feign.OrderFeignService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +24,17 @@ import java.util.Map;
 public class UserController {
 
     //用户-订单映射
-    public static Map<Integer, Integer> map = new HashMap();
+    public static Map<Integer, Long> map = new HashMap();
     static {
-        map.put(1,1);
-        map.put(2,2);
+        map.put(1,1L);
+        map.put(2,2L);
     }
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private OrderFeignService orderFeignService;
 
     /**
      * 根据用户id查询订单详情
@@ -41,9 +45,23 @@ public class UserController {
     @GetMapping("/findOrderByUserId/{userId}")
     public Result findOrderByUserId(@PathVariable("userId") Integer userId) {
         log.info("[执行根据用户id查询订单详情] userId:{}", userId);
-        Integer orderId = map.get(userId);
+        Long orderId = map.get(userId);
+        //ribbon服务调用方式
         String url = "http://mall-order-service/order/findOrderByOrderId/" + orderId;
         Result result = restTemplate.getForObject(url, Result.class);
         return result;
     }
+
+    @GetMapping("/feign/findOrderByUserId/{userId}")
+    public Result findOrderByUserIdFeign(@PathVariable("userId") Integer userId) {
+        log.info("[feign方式执行根据用户id查询订单详情] userId:{}", userId);
+        Long orderId = map.get(userId);
+        //feign方式
+        Result result = orderFeignService.findOrderByUserId(orderId);
+        return result;
+    }
+
+
+
+
 }

@@ -25,8 +25,8 @@ public class OrderController {
      * @return
      */
     @GetMapping("/findOrderByOrderId/{orderId}")
-    public Result findOrderByUserId(@PathVariable("orderId") Integer orderId) {
-        Integer data = 1;
+    public Result findOrderByUserId(@PathVariable("orderId") Long orderId) {
+        int data = Integer.parseInt(orderId.toString());
         return Result.successData(data);
     }
 }

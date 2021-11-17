@@ -14,9 +14,15 @@ spring:
         cluster-name: SH
         #ephemeral: false
 
+feign:
+  hystrix:
+    #实现fallback 功能需要开启
+    enabled: true
+
 #暴露actuator端点   http://localhost:8030/actuator/sentinel
 management:
   endpoints:
     web:
       exposure:
         include: '*'
+
