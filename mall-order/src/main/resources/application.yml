@@ -19,6 +19,13 @@ feign:
   hystrix:
     #实现fallback 功能需要开启
     enabled: true
+  client:
+    config:
+      mall-order-service:
+        #请求连接超时时间
+        connectTimeout: 1000
+        #请求响应超时时间
+        readTimeout: 1000
 
 #暴露actuator端点   http://localhost:8020/actuator/sentinel
 management:
