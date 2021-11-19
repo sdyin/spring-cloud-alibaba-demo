@@ -1,19 +1,6 @@
 server:
   port: 8030
 
-spring:
-  application:
-    name: mall-user-service  #微服务名称
-
-  #配置nacos注册中心地址
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-        #group:  mall-order
-        cluster-name: SH
-        #ephemeral: false
-
 feign:
   hystrix:
     #实现fallback 功能需要开启

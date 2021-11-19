@@ -1,5 +1,6 @@
 package com.sdyin.mall.user.controller;
 
+import com.sdyin.mall.common.entity.User;
 import com.sdyin.mall.common.response.Result;
 import com.sdyin.mall.user.service.feign.OrderFeignService;
 import lombok.extern.slf4j.Slf4j;
@@ -52,6 +53,11 @@ public class UserController {
         return result;
     }
 
+    /**
+     * feign 方式查询订单详情
+     * @param userId
+     * @return
+     */
     @GetMapping("/feign/findOrderByUserId/{userId}")
     public Result findOrderByUserIdFeign(@PathVariable("userId") Integer userId) {
         log.info("[feign方式执行根据用户id查询订单详情] userId:{}", userId);
@@ -61,6 +67,19 @@ public class UserController {
         return result;
     }
 
+    /**
+     * 查询用户信息
+     *
+     * @param userId
+     * @return
+     */
+    @GetMapping("/info/{userId}")
+    public Result queryUserInfo(@PathVariable("userId") Integer userId){
+        User user = new User();
+        user.setName("");
+
+        return Result.successData(user);
+    }
 
 
 
