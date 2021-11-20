@@ -10,9 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class MallUserApplication {
 
     public static void main(String[] args) {
-        final ConfigurableApplicationContext applicationContext = SpringApplication.run(MallUserApplication.class, args);
-        String userAge = applicationContext.getEnvironment().getProperty("user.age");
-        System.out.println("----config -> userAge------" + userAge);
+        ConfigurableApplicationContext applicationContext = SpringApplication.run(MallUserApplication.class, args);
     }
 
 }

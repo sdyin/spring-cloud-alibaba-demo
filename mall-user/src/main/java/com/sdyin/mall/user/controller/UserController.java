@@ -5,6 +5,8 @@ import com.sdyin.mall.common.response.Result;
 import com.sdyin.mall.user.service.feign.OrderFeignService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/user")
+@RefreshScope //处理@Value获取到的值无法动态感知修改问题
 @Slf4j
 public class UserController {
 
@@ -31,11 +34,31 @@ public class UserController {
         map.put(2,2L);
     }
 
+    @Value("${user.name}")
+    private String userName;
+
+    @Value("${user.age}")
+    private Integer age;
+
     @Autowired
     private RestTemplate restTemplate;
 
     @Autowired
     private OrderFeignService orderFeignService;
+
+
+    /**
+     * 从nacos配置中心读取配置值
+     *
+     * @return
+     */
+    @GetMapping("/config/value")
+    public Result getValueFromNacosConfig(){
+        log.info("【读取到用户名】 userName:{}", userName);
+        log.info("【读取到用户年龄】 age:{}", age);
+        User user = new User(1L, userName, age);
+        return Result.successData(user);
+    }
 
     /**
      * 根据用户id查询订单详情
