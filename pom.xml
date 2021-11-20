@@ -20,6 +20,7 @@
         <module>mall-order</module>
         <module>mall-user</module>
         <module>dubbo-demo</module>
+        <module>sentinel-demo</module>
     </modules>
 
     <properties>
