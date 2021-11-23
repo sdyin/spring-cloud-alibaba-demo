@@ -17,13 +17,15 @@ import java.util.List;
 public class SentinelDemoController {
 
     @GetMapping("/info/{id}")
-    public Result queryById(@PathVariable("id") Long id){
+    public Result queryById(@PathVariable("id") Long id) throws InterruptedException {
         log.info("【执行查询接口】 id:{}", id);
+        Thread.sleep(200);
         return Result.successData(id);
     }
 
     @GetMapping("/list")
     public Result queryList(){
+        log.info("【执行查询列表接口】");
         List<String> list = Lists.newArrayList("4", "5", "6");
         return Result.successData(list);
     }
