@@ -46,6 +46,12 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <!-- sentinel 规则持久化到文件 -->
+        <dependency>
+            <groupId>com.sdyin</groupId>
+            <artifactId>sentinel-rule-file</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

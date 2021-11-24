@@ -21,6 +21,7 @@
         <module>mall-user</module>
         <module>dubbo-demo</module>
         <module>sentinel-demo</module>
+        <module>sentinel-rule-file</module>
     </modules>
 
     <properties>
